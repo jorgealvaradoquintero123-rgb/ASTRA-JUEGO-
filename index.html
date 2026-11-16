@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASTRA Chronicles</title>
+<style>
+:root{--bg:#101326;--panel:#1b2040;--muted:#aab1d0;--gold:#ffd36e;--cyan:#75e5ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% -20%,#354078,#171b36 42%,#0d1020);color:#f5f6ff;font-family:system-ui;min-height:100vh}
+.wrap{max-width:980px;margin:auto;padding:18px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;letter-spacing:4px;font-size:22px}
+.logo span{color:var(--cyan)}
+.wallet{background:#252b4d;border:1px solid #434d7b;border-radius:999px;padding:9px 15px;font-weight:700}
+h1{font-size:clamp(27px,6vw,46px);margin:24px 0 5px}
+.sub{color:var(--muted);margin:0 0 20px}
+.tabs{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
+.tab,button{border:0;border-radius:12px;padding:11px 16px;font-weight:800;cursor:pointer}
+.tab{background:#252b4b;color:#cbd1f0}
+.tab.active{background:#e9f8ff;color:#17203b}
+.banner{background:linear-gradient(115deg,#263a70,#542c78 55%,#a34b78);border:1px solid #7884c7;border-radius:22px;padding:22px;display:grid;grid-template-columns:1.2fr .8fr;gap:15px;overflow:hidden;position:relative;min-height:220px}
+.banner:after{content:"✦";font-size:180px;position:absolute;right:22px;top:-32px;color:#ffffff22}
+.tag{display:inline-block;background:#ffdf8b;color:#382746;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:900;letter-spacing:1px}
+.banner h2{font-size:clamp(25px,5vw,38px);margin:13px 0 5px}
+.banner p{color:#e1ddff;margin:0;max-width:420px}
+.hero{font-size:90px;align-self:center;text-align:center}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.pull{background:linear-gradient(90deg,#ffe39a,#ffbd62);color:#39264a;min-width:135px}
+.pull.secondary{background:#f2efff;color:#30305a}
+.ghost{background:#30375d;color:white}
+.note{color:#b9c0df;font-size:12px;margin-top:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:12px;margin-top:16px}
+.card{background:linear-gradient(160deg,#252d55,#171b34);border:1px solid #3b456f;border-radius:16px;padding:12px;text-align:center;overflow:hidden}
+.portrait{height:105px;border-radius:12px;background:radial-gradient(circle,#59699d,#242b50 65%);display:grid;place-items:center;font-size:55px;margin-bottom:9px}
+.card strong{display:block}
+.rarity{font-size:11px;font-weight:900;letter-spacing:1px}
+.SSR{color:#ffcf6d}.SR{color:#d69aff}.R{color:#7edbff}.N{color:#c4c9df}.UR{color:#ff8fbc}
+.panel{background:#1b2040;border:1px solid #353e68;border-radius:18px;padding:18px;margin-top:18px}
+.panel h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:13px}
+.result{display:none;text-align:center;margin-top:18px;padding:20px;background:#1b2040;border:1px solid #59679e;border-radius:20px}
+.result.show{display:block}
+.result .big{font-size:90px}
+.hidden{display:none!important}
+.rates{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.rate{background:#252b4b;padding:9px 12px;border-radius:10px;font-size:12px}
+footer{text-align:center;color:#7882aa;font-size:12px;padding:28px 0}
+@media(max-width:600px){.banner{grid-template-columns:1fr}.hero{position:absolute;right:10px;bottom:4px;font-size:76px;opacity:.65}.banner>div:first-child{position:relative;z-index:1}.wrap{padding:14px}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+<div class="logo">✦ <span>ASTRA</span> / CHRONICLES</div>
+<div class="wallet">💎 <b id="gems">1600</b></div>
+</div>
+<h1>El destino te espera.</h1>
+<p class="sub">Invoca héroes, reúne tu equipo y descubre quién responderá a tu llamado.</p>
+
+<div class="tabs">
+<button class="tab active" data-tab="summon">Invocar</button>
+<button class="tab" data-tab="collection">Colección</button>
+<button class="tab" data-tab="missions">Misiones</button>
+<button class="tab" data-tab="casino">Desafío Astral</button>
+</div>
+
+<section id="summon">
+<div class="banner">
+<div>
+<span class="tag">BANNER DESTACADO · TEMPORAL</span>
+<h2>Ecos de la Aurora</h2>
+<p>Una viajera de las estrellas aparece entre luces antiguas. ¿Será tu próxima aliada?</p>
+<div class="actions">
+<button class="pull" onclick="summon(1)">Invocar ×1 · 160 💎</button>
+<button class="pull secondary" onclick="summon(10)">Invocar ×10 · 1600 💎</button>
+</div>
+</div>
+<div class="hero">🌌</div>
+</div>
+<p class="note">Las invocaciones son ficticias y usan gemas gratuitas del juego. No hay compras reales.</p>
+<div class="panel">
+<h3>Probabilidades</h3>
+<div class="rates">
+<span class="rate">UR · 1%</span><span class="rate">SSR · 5%</span><span class="rate">SR · 14%</span><span class="rate">R · 30%</span><span class="rate">N · 50%</span>
+</div>
+<p class="muted">Pity: obtendrás al menos un SSR o superior cada 50 invocaciones. Contador: <b id="pity">0/50</b>.</p>
+</div>
+<div id="result" class="result"></div>
+<div class="panel">
+<h3>Cómo jugar</h3>
+<p class="muted">Gasta gemas para invocar. Cada personaje nuevo se añade a tu colección. Puedes conseguir 200 gemas gratis cada día.</p>
+<button class="ghost" onclick="daily()">🎁 Regalo diario (+200 💎)</button>
+<span class="muted" id="dailyMsg"></span>
+</div>
+</section>
+
+<section id="collection" class="hidden">
+<div class="panel">
+<h3>Tu colección</h3>
+<p class="muted" id="count">Todavía no has conseguido personajes.</p>
+<div class="grid" id="cards"></div>
+</div>
+</section>
+
+<section id="missions" class="hidden">
+<div class="panel">
+<h3>📜 Misiones diarias</h3>
+<p class="muted">Completa objetivos para conseguir gemas gratis.</p>
+<div id="dailyMissions" class="grid"></div>
+</div>
+<div class="panel">
+<h3>🏆 Misiones semanales</h3>
+<p class="muted">Objetivos de mayor duración y mejores recompensas.</p>
+<div id="weeklyMissions" class="grid"></div>
+</div>
+</section>
+
+<section id="casino" class="hidden">
+<div class="panel">
+<span class="tag">SOLO FICHAS GRATUITAS</span>
+<h2>🌠 Desafío Astral</h2>
+<p class="muted">Usa fichas que consigues jugando. Cada giro puede darte gemas. No hay dinero real.</p>
+<p>🎟️ Fichas disponibles: <b id="tokens">3</b></p>
+<button class="pull" onclick="spinCasino()">Probar suerte · 1 ficha</button>
+<div id="casinoResult" class="result">
+<div class="big">✨</div><h2>¡Buena suerte!</h2>
+<p class="muted">Premios posibles: 0, 50, 100, 250 o 500 gemas.</p>
+</div>
+<p class="muted">Completa misiones para conseguir fichas adicionales.</p>
+</div>
+</section>
+<footer>ASTRA CHRONICLES · Demo de gacha · Tu progreso se guarda en este navegador</footer>
+</div>
+
+<script>
+const roster=[
+{name:"Aurelia",emoji:"👑",rarity:"UR",title:"Emperatriz del Alba"},
+{name:"Nyra",emoji:"🌙",rarity:"SSR",title:"Bruja lunar"},
+{name:"Kael",emoji:"🐉",rarity:"SSR",title:"Dragón errante"},
+{name:"Seraphine",emoji:"🪽",rarity:"SSR",title:"Guardiana celeste"},
+{name:"Mika",emoji:"🦊",rarity:"SR",title:"Zorrita espiritual"},
+{name:"Orion",emoji:"🏹",rarity:"SR",title:"Arquero astral"},
+{name:"Lumi",emoji:"🧚",rarity:"SR",title:"Hada del rocío"},
+{name:"Rook",emoji:"🛡️",rarity:"R",title:"Caballero novato"},
+{name:"Tess",emoji:"🧪",rarity:"R",title:"Alquimista"},
+{name:"Pip",emoji:"🐣",rarity:"N",title:"Aprendiz"}
+];
+
+let gems=Number(localStorage.getItem("astra_gems"))||1600;
+let pity=Number(localStorage.getItem("astra_pity"))||0;
+let collection=JSON.parse(localStorage.getItem("astra_collection")||"{}");
+let tokens=Number(localStorage.getItem("astra_tokens"));
+if(!Number.isFinite(tokens))tokens=3;
+let pulls=Number(localStorage.getItem("astra_pulls"))||0;
+let dailyClaims=JSON.parse(localStorage.getItem("astra_daily_claims")||"{}");
+let weeklyClaims=JSON.parse(localStorage.getItem("astra_weekly_claims")||"{}");
+
+function dayKey(){return new Date().toLocaleDateString("en-CA");}
+function weekKey(){
+let d=new Date(),jan=new Date(d.getFullYear(),0,1);
+return d.getFullYear()+"-W"+Math.ceil((((d-jan)/86400000)+jan.getDay()+1)/7);
+}
+function save(){
+localStorage.setItem("astra_gems",gems);
+localStorage.setItem("astra_pity",pity);
+localStorage.setItem("astra_collection",JSON.stringify(collection));
+localStorage.setItem("astra_tokens",tokens);
+localStorage.setItem("astra_pulls",pulls);
+localStorage.setItem("astra_daily_claims",JSON.stringify(dailyClaims));
+localStorage.setItem("astra_weekly_claims",JSON.stringify(weeklyClaims));
+}
+function update(){
+document.getElementById("gems").textContent=gems;
+document.getElementById("pity").textContent=pity+"/50";
+document.getElementById("tokens").textContent=tokens;
+renderCards();renderMissions();
+}
+function choose(){
+let r=Math.random()*100;
+if(pity>=49||r<1)return roster[0];
+if(r<6)return roster[1+Math.floor(Math.random()*3)];
+if(r<20)return roster[4+Math.floor(Math.random()*3)];
+if(r<50)return roster[7+Math.floor(Math.random()*2)];
+return roster[9];
+}
+function summon(n){
+let cost=n*160;
+if(gems<cost){alert("No tienes suficientes gemas. Reclama tu regalo diario.");return;}
+gems-=cost;pulls+=n;
+let pulled=[];
+for(let i=0;i<n;i++){
+let c=choose();
+if(c.rarity==="UR"||c.rarity==="SSR")pity=0;
+else pity++;
+collection[c.name]=(collection[c.name]||0)+1;
+pulled.push(c);
+}
+save();update();showResults(pulled);
+}
+function showResults(list){
+let box=document.getElementById("result");
+box.className="result show";
+if(list.length===1){
+let c=list[0];
+box.innerHTML=`<div class="big">${c.emoji}</div><div class="rarity ${c.rarity}">${c.rarity}</div><h2>${c.name}</h2><p class="muted">${c.title}</p>`;
+}else{
+box.innerHTML=`<h2>¡Tus ${list.length} invocaciones!</h2><div class="grid">${list.map(c=>`<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong></div>`).join("")}</div>`;
+}
+box.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function renderCards(){
+let keys=Object.keys(collection);
+document.getElementById("count").textContent=keys.length?
+`Has descubierto ${keys.length} de ${roster.length} personajes · ${Object.values(collection).reduce((a,b)=>a+b,0)} copias.`:
+"Todavía no has conseguido personajes.";
+document.getElementById("cards").innerHTML=keys.map(k=>{
+let c=roster.find(x=>x.name===k);
+return `<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong><span class="muted">${c.title}</span><p class="muted">Copias: ${collection[k]}</p></div>`;
+}).join("");
+}
+function daily(){
+let today=new Date().toLocaleDateString();
+if(localStorage.getItem("astra_daily")===today){
+document.getElementById("dailyMsg").textContent="Ya reclamaste tu regalo hoy.";return;
+}
+gems+=200;
+localStorage.setItem("astra_daily",today);
+save();update();
+document.getElementById("dailyMsg").textContent="¡200 gemas recibidas!";
+}
+
+const dailyTasks=[
+{id:"pull1",name:"Primer llamado",desc:"Realiza 1 invocación",reward:80,done:()=>pulls>=1},
+{id:"pull5",name:"Vínculo astral",desc:"Realiza 5 invocaciones",reward:140,done:()=>pulls>=5},
+{id:"collect2",name:"Reúne aliados",desc:"Consigue 2 personajes diferentes",reward:100,done:()=>Object.keys(collection).length>=2}
+];
+const weeklyTasks=[
+{id:"pull20",name:"Viajero constante",desc:"Realiza 20 invocaciones",reward:450,done:()=>pulls>=20},
+{id:"collect5",name:"Pequeña colección",desc:"Consigue 5 personajes diferentes",reward:350,done:()=>Object.keys(collection).length>=5}
+];
+
+function missionCard(m,weekly){
+let claims=weekly?weeklyClaims:dailyClaims;
+let key=weekly?weekKey():dayKey();
+let claimed=claims[key]?.includes(m.id);
+let done=m.done();
+return `<div class="card"><div class="portrait">${done?"🏅":"📘"}</div><strong>${m.name}</strong><p class="muted">${m.desc}</p><p>💎 ${m.reward}</p><button class="${done&&!claimed?"pull":"ghost"}" ${!done||claimed?"disabled":""} onclick="claimMission('${m.id}',${weekly})">${claimed?"Reclamada":done?"Reclamar":"En progreso"}</button></div>`;
+}
+function renderMissions(){
+let d=document.getElementById("dailyMissions");
+let w=document.getElementById("weeklyMissions");
+if(!d||!w)return;
+d.innerHTML=dailyTasks.map(m=>missionCard(m,false)).join("");
+w.innerHTML=weeklyTasks.map(m=>missionCard(m,true)).join("");
+}
+function claimMission(id,weekly){
+let tasks=weekly?weeklyTasks:dailyTasks;
+let claims=weekly?weeklyClaims:dailyClaims;
+let key=weekly?weekKey():dayKey();
+let m=tasks.find(x=>x.id===id);
+if(!m||!m.done()||(claims[key]||[]).includes(id))return;
+claims[key]=claims[key]||[];
+claims[key].push(id);
+gems+=m.reward;tokens++;
+save();update();
+}
+function spinCasino(){
+if(tokens<1){
+let box=document.getElementById("casinoResult");
+box.className="result show";
+box.innerHTML="<h2>Te faltan fichas</h2><p class='muted'>Completa misiones para conseguir más.</p>";
+return;
+}
+tokens--;
+let roll=Math.random();
+let prize=roll<.40?0:roll<.72?50:roll<.91?100:roll<.99?250:500;
+gems+=prize;save();update();
+let box=document.getElementById("casinoResult");
+box.className="result show";
+box.innerHTML=`<div class="big">${prize>=250?"🌟":prize>0?"💎":"🎲"}</div><h2>${prize?`¡Ganaste ${prize} gemas!`:"Esta vez no hubo premio"}</h2><p class="muted">Fichas restantes: ${tokens}</p>`;
+}
+document.querySelectorAll(".tab").forEach(b=>{
+b.addEventListener("click",()=>{
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+["summon","collection","missions","casino"].forEach(id=>{
+document.getElementById(id).classList.toggle("hidden",b.dataset.tab!==id);
+});
+});
+});
+update();
+renderMissions();
+</script>
+</body>
+</html>
