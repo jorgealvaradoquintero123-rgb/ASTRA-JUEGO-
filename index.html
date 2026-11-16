@@ -1,254 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASTRA Chronicles</title>
 <style>
 :root{--bg:#101326;--panel:#1b2040;--muted:#aab1d0;--gold:#ffd36e;--cyan:#75e5ff}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 50% -20%,#354078,#171b36 42%,#0d1020);color:#f5f6ff;font-family:system-ui;min-height:100vh}
-.wrap{max-width:980px;margin:auto;padding:18px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{font-weight:900;letter-spacing:4px;font-size:22px}.logo span{color:var(--cyan)}
-.wallet{background:#252b4d;border:1px solid #434d7b;border-radius:999px;padding:9px 15px;font-weight:700}
-h1{font-size:clamp(27px,6vw,46px);margin:24px 0 5px}.sub{color:var(--muted);margin:0 0 20px}
-.tabs{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
-.tab,button{border:0;border-radius:12px;padding:11px 16px;font-weight:800;cursor:pointer}
-.tab{background:#252b4b;color:#cbd1f0}.tab.active{background:#e9f8ff;color:#17203b}
-.banner{background:linear-gradient(115deg,#263a70,#542c78 55%,#a34b78);border:1px solid #7884c7;border-radius:22px;padding:22px;display:grid;grid-template-columns:1.2fr .8fr;gap:15px;overflow:hidden;position:relative;min-height:220px}
-.banner:after{content:"✦";font-size:180px;position:absolute;right:22px;top:-32px;color:#ffffff22}
-.tag{display:inline-block;background:#ffdf8b;color:#382746;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:900;letter-spacing:1px}
-.banner h2{font-size:clamp(25px,5vw,38px);margin:13px 0 5px}.banner p{color:#e1ddff;margin:0;max-width:420px}
-.hero{font-size:90px;align-self:center;text-align:center}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.pull{background:linear-gradient(90deg,#ffe39a,#ffbd62);color:#39264a;min-width:135px}.pull.secondary{background:#f2efff;color:#30305a}
-.ghost{background:#30375d;color:white}.danger{background:#743b58;color:white}.note{color:#b9c0df;font-size:12px;margin-top:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:12px;margin-top:16px}
-.card{background:linear-gradient(160deg,#252d55,#171b34);border:1px solid #3b456f;border-radius:16px;padding:12px;text-align:center;overflow:hidden}
-.portrait{height:90px;border-radius:12px;background:radial-gradient(circle,#59699d,#242b50 65%);display:grid;place-items:center;font-size:50px;margin-bottom:9px}
-.card strong{display:block}.rarity{font-size:11px;font-weight:900;letter-spacing:1px}
-.SSR{color:#ffcf6d}.SR{color:#d69aff}.R{color:#7edbff}.N{color:#c4c9df}.UR{color:#ff8fbc}
-.panel{background:#1b2040;border:1px solid #353e68;border-radius:18px;padding:18px;margin-top:18px}
-.panel h3{margin:0 0 6px}.muted{color:var(--muted);font-size:13px}
-.result{display:none;text-align:center;margin-top:18px;padding:20px;background:#1b2040;border:1px solid #59679e;border-radius:20px}
-.result.show{display:block}.result .big{font-size:76px}.hidden{display:none!important}
-.rates{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.rate{background:#252b4b;padding:9px 12px;border-radius:10px;font-size:12px}
-button:disabled{opacity:.45;cursor:not-allowed}
-.battle-enemy{font-size:72px;text-align:center;margin:10px}
-.hpbar{height:13px;background:#3b2745;border-radius:20px;overflow:hidden;margin:7px 0 13px}
-.hpfill{height:100%;background:linear-gradient(90deg,#ff6b87,#ffbd62);width:100%;transition:width .2s}
-.battle-log{background:#11162e;border-radius:12px;padding:12px;min-height:74px;color:#dce2ff;font-size:13px;white-space:pre-line}
-.team-slot{border:1px solid #46517e;border-radius:12px;padding:10px;margin:7px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}
-footer{text-align:center;color:#7882aa;font-size:12px;padding:28px 0}
-@media(max-width:600px){.banner{grid-template-columns:1fr}.hero{position:absolute;right:10px;bottom:4px;font-size:76px;opacity:.65}.banner>div:first-child{position:relative;z-index:1}.wrap{padding:14px}.actions button{flex:1}}
-</style>
-</head>
-<body>
-<div class="wrap">
-<div class="top"><div class="logo">✦ <span>ASTRA</span> / CHRONICLES</div><div class="wallet">💎 <b id="gems">1600</b>　🎟️ <b id="tickets">0</b></div></div>
-<h1>El destino te espera.</h1>
-<p class="sub">Invoca héroes, forma tu equipo y conquista el Desafío Astral.</p>
-<div class="tabs">
-<button class="tab active" data-tab="summon">Invocar</button><button class="tab" data-tab="collection">Colección</button>
-<button class="tab" data-tab="battle">Combate</button><button class="tab" data-tab="missions">Misiones</button><button class="tab" data-tab="casino">Ruleta</button>
-</div>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#354078,#171b36 42%,#0d1020);color:#f5f6ff;font-family:system-ui;min-height:100vh}
+.wrap{max-width:1050px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.logo{font-weight:900;letter-spacing:3px}.logo span{color:var(--cyan)}.wallet{background:#252b4d;border:1px solid #434d7b;border-radius:99px;padding:9px 13px;font-weight:800}
+h1{font-size:clamp(27px,6vw,42px);margin:22px 0 4px}.sub,.muted,.note{color:var(--muted)}.tabs,.actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab,button{border:0;border-radius:11px;padding:10px 13px;font-weight:800;cursor:pointer}.tab{background:#252b4b;color:#cbd1f0}.tab.active{background:#e9f8ff;color:#17203b}button:disabled{opacity:.4;cursor:not-allowed}
+.pull{background:linear-gradient(90deg,#ffe39a,#ffbd62);color:#39264a}.ghost{background:#30375d;color:white}.danger{background:#743b58;color:white}.small{padding:7px 9px;font-size:12px}
+.banner{background:linear-gradient(115deg,#263a70,#542c78 55%,#a34b78);border:1px solid #7884c7;border-radius:20px;padding:20px;margin:12px 0}.banner.special{background:linear-gradient(115deg,#173d59,#43265f 60%,#8a315c)}.tag{display:inline-block;background:#ffdf8b;color:#382746;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:900;letter-spacing:1px}.banner h2{font-size:30px;margin:10px 0 4px}.panel{background:#1b2040;border:1px solid #353e68;border-radius:17px;padding:16px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px;margin-top:12px}.card{background:linear-gradient(160deg,#252d55,#171b34);border:1px solid #3b456f;border-radius:14px;padding:11px;text-align:center;overflow:hidden}.portrait{height:76px;border-radius:10px;background:radial-gradient(circle,#59699d,#242b50 65%);display:grid;place-items:center;font-size:43px;margin-bottom:7px}.card strong{display:block}.rarity{font-size:11px;font-weight:900}.UR{color:#ff8fbc}.SSR{color:#ffcf6d}.SR{color:#d69aff}.R{color:#7edbff}.N{color:#c4c9df}.hidden{display:none!important}.result{display:none;text-align:center;margin-top:14px;padding:16px;background:#1b2040;border:1px solid #59679e;border-radius:16px}.result.show{display:block}.team-slot{border:1px solid #46517e;border-radius:11px;padding:9px;margin:6px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}.note{font-size:12px}.rates{display:flex;gap:8px;flex-wrap:wrap}.rate{background:#252b4b;padding:8px 10px;border-radius:9px;font-size:12px}
+.battlefield{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.side{background:#121831;border:1px solid #39466f;border-radius:14px;padding:10px;min-width:0}.fighters{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px}.fighter{background:#252b4b;border:1px solid #46517e;border-radius:10px;padding:8px;text-align:center;cursor:pointer;min-width:0}.fighter.selected{outline:2px solid #ffe08a}.fighter.dead{opacity:.35;filter:grayscale(1)}.fighter .face{font-size:34px}.hpbar{height:9px;background:#482b48;border-radius:20px;overflow:hidden;margin:5px 0}.hpfill{height:100%;background:linear-gradient(90deg,#ff6382,#ffc46b);width:100%}.battlelog{background:#11162e;border-radius:10px;padding:11px;min-height:60px;white-space:pre-line;font-size:13px;color:#dce2ff}.skillrow{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}.skillrow button{flex:1;min-width:110px}.lock{opacity:.6}.footer{text-align:center;color:#7882aa;font-size:12px;padding:20px}
+@media(max-width:560px){.wrap{padding:11px}.battlefield{grid-template-columns:1fr}.banner h2{font-size:25px}}
+</style></head>
+<body><div class="wrap">
+<div class="top"><div class="logo">✦ <span>ASTRA</span> / CHRONICLES</div><div class="wallet">💎 <b id="gems">0</b>　🎟️ <b id="tickets">0</b></div></div>
+<h1>El destino te espera.</h1><p class="sub">Invoca héroes, forma tu equipo y conquista los eventos.</p>
+<div class="tabs"><button class="tab active" data-tab="summon">Invocar</button><button class="tab" data-tab="collection">Colección</button><button class="tab" data-tab="battle">Combate</button><button class="tab" data-tab="event">Evento Sukuna</button><button class="tab" data-tab="missions">Misiones</button><button class="tab" data-tab="casino">Ruleta</button></div>
 
 <section id="summon">
-<div class="banner"><div><span class="tag">BANNER DESTACADO</span><h2>Ecos de la Aurora</h2>
-<p>Una viajera de las estrellas aparece entre luces antiguas. ¿Será tu próxima aliada?</p>
-<div class="actions"><button class="pull" onclick="summon(1)">Invocar ×1 · 160 💎</button><button class="pull secondary" onclick="summon(10)">Invocar ×10 · 1600 💎</button></div></div><div class="hero">🌌</div></div>
-<p class="note">Juego ficticio: las gemas y tickets no tienen valor real.</p>
-<div class="panel"><h3>Probabilidades</h3><div class="rates">
-<span class="rate">UR · 1%</span><span class="rate">SSR · 5%</span><span class="rate">SR · 14%</span><span class="rate">R · 30%</span><span class="rate">N · 50%</span></div>
-<p class="muted">Sin pity para UR. Garantía de SSR o superior cada 300 invocaciones sin conseguir uno. Contador: <b id="pity">0/300</b>.</p></div>
+<div class="banner"><span class="tag">BANNER NORMAL</span><h2>Ecos de la Aurora</h2><p>Invoca personajes originales y construye tu equipo.</p><div class="actions"><button class="pull" onclick="summon(1)">Invocar ×1 · 160 💎</button><button class="pull" onclick="summon(10)">Invocar ×10 · 1600 💎</button></div>
+<div class="rates"><span class="rate">UR · 0.15%</span><span class="rate">SSR · 1.5%</span><span class="rate">SR · 8%</span><span class="rate">R · 25%</span><span class="rate">N · 65.35%</span></div><p class="note">Sin garantía para UR. Garantía SSR o superior cada 300 invocaciones fallidas. Contador: <b id="pity">0/300</b>.</p></div>
+<div class="banner special"><span class="tag">BANNER ESPECIAL · SIEMPRE DISPONIBLE</span><h2>✨ Leyendas del Anime</h2><p>Personajes invitados. Cuesta más porque sus habilidades son especiales.</p><div class="actions"><button class="pull" onclick="specialSummon(1)">Invocar ×1 · 400 💎</button><button class="pull" onclick="specialSummon(10)">Invocar ×10 · 4000 💎</button></div><p class="note">Tanjiro y Rentaro están disponibles desde el inicio. Sukuna aparece bloqueado hasta reunir sus 20 dedos en el evento.</p><div id="specialStatus" class="muted"></div></div>
 <div id="result" class="result"></div>
-<div class="panel"><h3>Ingresos pasivos</h3><p class="muted">Tus 3 personajes equipados producen gemas automáticamente mientras juegas.</p><b id="income">0 gemas por segundo</b><p class="muted" id="teamSummary">Equipa personajes desde Colección.</p>
-<button class="ghost" onclick="daily()">🎁 Regalo diario (+200 💎)</button> <span class="muted" id="dailyMsg"></span></div>
+<div class="panel"><h3>Ingresos pasivos</h3><p class="muted">Solo los 3 personajes equipados generan gemas.</p><b id="income">0 gemas por segundo</b> <p class="muted" id="teamSummary">Equipa personajes en Colección.</p><button class="ghost" onclick="daily()">🎁 Regalo diario (+100 💎)</button> <span id="dailyMsg" class="muted"></span></div>
 </section>
 
-<section id="collection" class="hidden">
-<div class="panel"><h3>Tu colección</h3><p class="muted" id="count"></p><p class="muted">Toca “Equipar” para formar tu equipo de hasta 3 personajes. Solo ellos generan gemas.</p>
-<div id="teamSlots"></div><div class="grid" id="cards"></div></div>
-</section>
+<section id="collection" class="hidden"><div class="panel"><h3>Tu colección</h3><p class="muted" id="count"></p><button class="pull" onclick="equipBest()">⭐ Equipar lo mejor</button><div id="teamSlots"></div><div id="cards" class="grid"></div></div></section>
 
-<section id="battle" class="hidden">
-<div class="panel"><span class="tag">COMBATE POR TURNOS</span><h2 id="stageTitle">Combate 1</h2>
-<p class="muted">Derrota al enemigo para ganar 1 ticket. Cada victoria aumenta un poco la dificultad.</p>
-<div class="battle-enemy" id="enemyEmoji">👾</div><h3 id="enemyName" style="text-align:center">Slime astral</h3>
-<div class="hpbar"><div class="hpfill" id="enemyHpBar"></div></div><p class="muted" id="enemyHpText" style="text-align:center"></p>
-<div class="panel"><h3>Tu equipo</h3><div id="battleTeam"></div></div>
-<div class="actions"><button class="pull" id="attackBtn" onclick="battleAction('attack')">⚔️ Atacar</button><button class="ghost" id="defendBtn" onclick="battleAction('defend')">🛡️ Defender</button><button class="pull secondary" id="skillBtn" onclick="battleAction('skill')">✨ Habilidad</button></div>
-<div class="battle-log" id="battleLog">Prepara tu equipo y comienza el combate.</div>
-<button class="ghost" id="startBattleBtn" onclick="startBattle()">⚔️ Iniciar combate</button>
-</div>
-</section>
+<section id="battle" class="hidden"><div class="panel"><span class="tag">COMBATE POR TURNOS</span><h2 id="stageTitle">Combate normal</h2><p class="muted">Selecciona uno de tus personajes, elige una habilidad y luego toca al enemigo objetivo.</p>
+<div class="battlefield"><div class="side"><h3>🛡️ Tu equipo</h3><div id="allySide" class="fighters"></div></div><div class="side"><h3>⚔️ Enemigos</h3><div id="foeSide" class="fighters"></div></div></div>
+<div id="skillArea" class="panel"><b>Habilidades del personaje</b><p class="muted">Selecciona un personaje vivo para ver sus habilidades.</p></div>
+<div class="actions"><button class="ghost" onclick="startNormalBattle()">Iniciar combate normal</button></div><div id="battleLog" class="battlelog">Prepara tu equipo y comienza.</div></div></section>
 
-<section id="missions" class="hidden"><div class="panel"><h3>📜 Misiones</h3><p class="muted">Consigue gemas y tickets jugando.</p><div id="missionsGrid" class="grid"></div></div></section>
+<section id="event" class="hidden"><div class="panel"><span class="tag">EVENTO DE ALTA DIFICULTAD</span><h2>🔥 Los 20 dedos malditos</h2><p>Entra en la zona maldita, derrota oleadas y consigue dedos de Sukuna. Las recompensas no están garantizadas: los enemigos fuertes tienen mejores probabilidades.</p><div class="team-slot"><b>Dedos conseguidos</b><b><span id="fingerCount">0</span>/20</b></div><div class="hpbar"><div id="fingerBar" class="hpfill"></div></div><p class="muted">Al reunir 20 dedos, Sukuna se desbloquea en el banner especial. El evento tiene 3 oleadas y un jefe final; si pierdes, conservas los dedos que ya conseguiste.</p><div class="actions"><button class="pull" onclick="startSukunaEvent()">Entrar al evento</button></div><div id="eventBattle" class="hidden"><h3 id="eventWave">Oleada 1/3</h3><div class="battlefield"><div class="side"><h3>Tu equipo</h3><div id="eventAllies" class="fighters"></div></div><div class="side"><h3>Enemigos</h3><div id="eventFoes" class="fighters"></div></div></div><div id="eventSkills" class="panel"><p class="muted">Elige un personaje.</p></div><div class="battlelog" id="eventLog">La zona maldita te espera.</div></div><div id="sukunaUnlock" class="muted"></div></div></section>
 
-<section id="casino" class="hidden"><div class="panel"><span class="tag">FICHAS GRATUITAS</span><h2>🎰 Ruleta Astral</h2>
-<p class="muted">Usa 1 ticket para girar. Los premios son gemas.</p><p>🎟️ Tickets: <b id="casinoTickets">0</b></p>
-<button class="pull" onclick="spinCasino()">Girar · 1 ticket</button><div id="casinoResult" class="result"></div>
-<p class="muted">Puedes conseguir tickets ganando combates o sacrificando copias extra de personajes en tu colección.</p></div></section>
-<footer>ASTRA CHRONICLES · Tu progreso se guarda en este navegador.</footer>
-</div>
+<section id="missions" class="hidden"><div class="panel"><h3>📜 Misiones</h3><div id="missionsGrid" class="grid"></div></div></section>
+<section id="casino" class="hidden"><div class="panel"><h2>🎰 Ruleta Astral</h2><p class="muted">Usa 1 ticket. Puedes ganar gemas o nada.</p><button class="pull" onclick="spinCasino()">Girar · 1 ticket</button><div id="casinoResult" class="result"></div></div></section>
+<div class="footer">ASTRA CHRONICLES · El progreso se guarda en este navegador.</div></div>
+
 <script>
-const roster=[
-{name:"Aurelia",emoji:"👑",rarity:"UR",title:"Emperatriz del Alba",power:42},
-{name:"Nyra",emoji:"🌙",rarity:"SSR",title:"Bruja lunar",power:30},
-{name:"Kael",emoji:"🐉",rarity:"SSR",title:"Dragón errante",power:32},
-{name:"Seraphine",emoji:"🪽",rarity:"SSR",title:"Guardiana celeste",power:28},
-{name:"Mika",emoji:"🦊",rarity:"SR",title:"Zorrita espiritual",power:20},
-{name:"Orion",emoji:"🏹",rarity:"SR",title:"Arquero astral",power:22},
-{name:"Lumi",emoji:"🧚",rarity:"SR",title:"Hada del rocío",power:18},
-{name:"Rook",emoji:"🛡️",rarity:"R",title:"Caballero novato",power:13},
-{name:"Tess",emoji:"🧪",rarity:"R",title:"Alquimista",power:12},
-{name:"Pip",emoji:"🐣",rarity:"N",title:"Aprendiz",power:8}
+const baseRoster=[
+{name:"Aurelia",emoji:"👑",rarity:"UR",power:42,title:"Emperatriz del Alba",skills:[["Destello real",1.5,"one"],["Lanza solar",2,"one"]]},
+{name:"Nyra",emoji:"🌙",rarity:"SSR",power:30,title:"Bruja lunar",skills:[["Luna cortante",1.4,"one"],["Marea astral",.8,"all"]]},
+{name:"Kael",emoji:"🐉",rarity:"SSR",power:32,title:"Dragón errante",skills:[["Aliento dracónico",1.5,"one"],["Llamarada",.75,"all"]]},
+{name:"Seraphine",emoji:"🪽",rarity:"SSR",power:28,title:"Guardiana celeste",skills:[["Luz sagrada",1.3,"one"],["Bendición",0,"heal"]]},
+{name:"Mika",emoji:"🦊",rarity:"SR",power:20,title:"Zorrita espiritual",skills:[["Zarpazo",1.3,"one"]]},
+{name:"Orion",emoji:"🏹",rarity:"SR",power:22,title:"Arquero astral",skills:[["Flecha precisa",1.5,"one"]]},
+{name:"Lumi",emoji:"🧚",rarity:"SR",power:18,title:"Hada del rocío",skills:[["Polvo brillante",1.1,"one"],["Curación",0,"heal"]]},
+{name:"Rook",emoji:"🛡️",rarity:"R",power:13,title:"Caballero novato",skills:[["Golpe de escudo",1.1,"one"]]},
+{name:"Tess",emoji:"🧪",rarity:"R",power:12,title:"Alquimista",skills:[["Frasco ácido",1.2,"one"],["Nube tóxica",.45,"poisonAll"]]},
+{name:"Pip",emoji:"🐣",rarity:"N",power:8,title:"Aprendiz",skills:[["Golpecito",.7,"one"]]}
 ];
-const incomeRate={N:1,R:2,SR:5,SSR:15,UR:50};
-const enemyTypes=[{name:"Slime astral",emoji:"🟣"},{name:"Lobo umbrío",emoji:"🐺"},{name:"Gólem antiguo",emoji:"🗿"},{name:"Dragón menor",emoji:"🐲"},{name:"Guardián del vacío",emoji:"👹"}];
-const get=(k,d)=>{try{let v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
-let gems=Number(localStorage.getItem("astra_gems"));if(!Number.isFinite(gems)||gems<=0)gems=1600;
-let pity=Number(localStorage.getItem("astra_pity"))||0;
-let collection=get("astra_collection",{});
-let tickets=Number(localStorage.getItem("astra_tickets"));if(!Number.isFinite(tickets))tickets=Number(localStorage.getItem("astra_tokens"))||0;
-let pulls=Number(localStorage.getItem("astra_pulls"))||0;
-let equipped=get("astra_equipped",[]);
-let wins=Number(localStorage.getItem("astra_wins"))||0;
-let claimed=get("astra_claimed",{});
-let enemy=null, battleActive=false, defending=false, playerTurn=0;
-function save(){
-localStorage.setItem("astra_gems",gems);localStorage.setItem("astra_pity",pity);
-localStorage.setItem("astra_collection",JSON.stringify(collection));localStorage.setItem("astra_tickets",tickets);
-localStorage.setItem("astra_pulls",pulls);localStorage.setItem("astra_equipped",JSON.stringify(equipped));
-localStorage.setItem("astra_wins",wins);localStorage.setItem("astra_claimed",JSON.stringify(claimed));
-}
+const animeRoster=[
+{name:"Tanjiro",emoji:"⚔️",rarity:"SSR",power:35,title:"Cazador de demonios",special:true,skills:[["Danza del dios del fuego",1.7,"one"],["Corte de agua",1.25,"one"],["Remolino acuático",.75,"all"]]},
+{name:"Rentaro",emoji:"🌟",rarity:"SSR",power:34,title:"Héroe invitado",special:true,skills:[["Impacto veloz",1.5,"one"],["Combo decidido",1.9,"one"]]},
+{name:"Sukuna",emoji:"👹",rarity:"MYTHIC",power:65,title:"Rey de las Maldiciones",special:true,locked:true,skills:[["Desmantelar",1.8,"one"],["Cleave",2.3,"one"],["Llamas abiertas",1.15,"all"],["Corte del mundo",2.0,"one"]]}
+];
+const roster=[...baseRoster,...animeRoster],incomeRate={N:.2,R:.4,SR:1,SSR:3,UR:8,MYTHIC:12};
+const $=id=>document.getElementById(id),get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+let gems=Number(localStorage.getItem("astra_gems"));if(!Number.isFinite(gems))gems=1600;
+let pity=Number(localStorage.getItem("astra_pity"))||0,collection=get("astra_collection",{}),tickets=Number(localStorage.getItem("astra_tickets"));if(!Number.isFinite(tickets))tickets=Number(localStorage.getItem("astra_tokens"))||0;
+let pulls=Number(localStorage.getItem("astra_pulls"))||0,equipped=get("astra_equipped",[]),wins=Number(localStorage.getItem("astra_wins"))||0,claimed=get("astra_claimed",{}),fingers=Number(localStorage.getItem("astra_fingers"))||0;
+let battle=null,eventMode=false,selectedAlly=null,selectedSkill=null,selectedTarget=null;
+function save(){for(const [k,v] of Object.entries({astra_gems:gems,astra_pity:pity,astra_collection:JSON.stringify(collection),astra_tickets:tickets,astra_pulls:pulls,astra_equipped:JSON.stringify(equipped),astra_wins:wins,astra_claimed:JSON.stringify(claimed),astra_fingers:fingers}))localStorage.setItem(k,v)}
+function owned(){return Object.keys(collection).filter(n=>collection[n]>0).map(n=>roster.find(c=>c.name===n)).filter(Boolean)}
 function team(){return equipped.filter(n=>collection[n]>0).slice(0,3).map(n=>roster.find(c=>c.name===n)).filter(Boolean)}
-function rate(){return team().reduce((s,c)=>s+incomeRate[c.rarity],0)}
-function update(){
-document.getElementById("gems").textContent=Math.floor(gems);document.getElementById("tickets").textContent=tickets;
-document.getElementById("pity").textContent=pity+"/300";document.getElementById("income").textContent=rate()+" gemas por segundo";
-document.getElementById("teamSummary").textContent=team().length?team().map(c=>c.name).join(" · "):"Equipa personajes desde Colección.";
-document.getElementById("casinoTickets").textContent=tickets;renderCards();renderTeam();renderMissions();
-}
-function choose(){
-let r=Math.random()*100;
-if(pity>=299 && r>=1)return roster[1+Math.floor(Math.random()*3)];
-if(r<1)return roster[0];
-if(r<6)return roster[1+Math.floor(Math.random()*3)];
-if(r<20)return roster[4+Math.floor(Math.random()*3)];
-if(r<50)return roster[7+Math.floor(Math.random()*2)];
-return roster[9];
-}
-function summon(n){
-if(gems<n*160){alert("No tienes suficientes gemas.");return}
-gems-=n*160;pulls+=n;let pulled=[];
-for(let i=0;i<n;i++){
-let c=choose();pity=(c.rarity==="SSR"||c.rarity==="UR")?0:pity+1;
-collection[c.name]=(collection[c.name]||0)+1;
-if(equipped.length<3&&!equipped.includes(c.name))equipped.push(c.name);
-pulled.push(c);
-}
-save();update();let box=document.getElementById("result");box.className="result show";
-box.innerHTML=pulled.length===1?`<div class="big">${pulled[0].emoji}</div><span class="rarity ${pulled[0].rarity}">${pulled[0].rarity}</span><h2>${pulled[0].name}</h2><p class="muted">${pulled[0].title}</p>`:
-`<h2>¡Tus ${n} invocaciones!</h2><div class="grid">${pulled.map(c=>`<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong></div>`).join("")}</div>`;
-}
-function renderCards(){
-let keys=Object.keys(collection).filter(k=>collection[k]>0);
-document.getElementById("count").textContent=keys.length?`Tienes ${keys.length} de ${roster.length} personajes y ${Object.values(collection).reduce((a,b)=>a+b,0)} copias.`:"Todavía no has conseguido personajes.";
-document.getElementById("cards").innerHTML=keys.map(k=>{
-let c=roster.find(x=>x.name===k);if(!c)return "";
-let isOn=equipped.includes(k);
-return `<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong><span class="muted">${c.title}</span><p class="muted">Copias: ${collection[k]}</p><button class="${isOn?"ghost":"pull"}" onclick="toggleEquip('${c.name}')">${isOn?"Desequipar":"Equipar"}</button>${collection[k]>1?`<button class="danger" style="margin-top:7px;width:100%" onclick="sacrifice('${c.name}')">Sacrificar copia · +1 🎟️</button>`:""}</div>`;
-}).join("");
-}
-function toggleEquip(name){
-if(equipped.includes(name))equipped=equipped.filter(x=>x!==name);
-else if(equipped.length>=3){alert("Solo puedes equipar 3 personajes. Desequipa uno primero.");return}
-else equipped.push(name);
-save();update();
-}
-function sacrifice(name){
-if((collection[name]||0)<=1){alert("Debes conservar al menos una copia.");return}
-if(!confirm(`¿Sacrificar una copia de ${name} para obtener 1 ticket?`))return;
-collection[name]--;tickets++;save();update();
-}
-function renderTeam(){
-document.getElementById("teamSlots").innerHTML=[0,1,2].map(i=>{
-let c=team()[i];return `<div class="team-slot"><span>${i+1}. ${c?c.emoji+" "+c.name+" · "+incomeRate[c.rarity]+" 💎/s":"Vacío"}</span><b>${c?c.rarity:"—"}</b></div>`;
-}).join("");
-document.getElementById("battleTeam").innerHTML=team().map(c=>`<div class="team-slot"><span>${c.emoji} ${c.name}</span><b>⚔️ ${c.power}</b></div>`).join("")||"<p class='muted'>No tienes personajes equipados.</p>";
-}
-function daily(){
-let today=new Date().toLocaleDateString();
-if(localStorage.getItem("astra_daily")===today){document.getElementById("dailyMsg").textContent=" Ya reclamaste tu regalo hoy.";return}
-gems+=200;localStorage.setItem("astra_daily",today);save();update();document.getElementById("dailyMsg").textContent=" ¡200 gemas recibidas!";
-}
-const tasks=[
-{id:"firstWin",name:"Primera victoria",desc:"Gana 1 combate",reward:100,done:()=>wins>=1},
-{id:"threeWins",name:"Cazador astral",desc:"Gana 3 combates",reward:250,done:()=>wins>=3},
-{id:"summon5",name:"Nuevos aliados",desc:"Haz 5 invocaciones",reward:150,done:()=>pulls>=5}
-];
-function renderMissions(){
-let box=document.getElementById("missionsGrid");if(!box)return;
-box.innerHTML=tasks.map(t=>{let done=t.done(),got=claimed[t.id];return `<div class="card"><div class="portrait">${done?"🏅":"📜"}</div><strong>${t.name}</strong><p class="muted">${t.desc}</p><p>💎 ${t.reward}</p><button class="${done&&!got?"pull":"ghost"}" ${!done||got?"disabled":""} onclick="claimTask('${t.id}')">${got?"Reclamada":done?"Reclamar":"En progreso"}</button></div>`}).join("");
-}
+function income(){return team().reduce((s,c)=>s+(incomeRate[c.rarity]||0),0)}
+function update(){ $("gems").textContent=Math.floor(gems);$("tickets").textContent=tickets;$("pity").textContent=pity+"/300";$("income").textContent=income()+" gemas/s";$("teamSummary").textContent=team().map(c=>c.name).join(" · ")||"Equipa personajes en Colección.";$("fingerCount").textContent=fingers;$("fingerBar").style.width=(fingers/20*100)+"%";$("specialStatus").textContent=collection.Sukuna?"Sukuna obtenido: "+collection.Sukuna+" copia(s).":fingers>=20?"¡Sukuna desbloqueado! Ya puede salir en el banner.":"Sukuna bloqueado: "+fingers+"/20 dedos.";$("sukunaUnlock").textContent=fingers>=20?"🔓 Sukuna ya está disponible en el banner especial.":"Sukuna sigue sellado.";$("tickets").textContent=tickets;renderCollection();renderMissions()}
+function chooseNormal(){let r=Math.random()*100;if(pity>=299&&r>=.15)return roster[1+Math.floor(Math.random()*3)];if(r<.15)return roster[0];if(r<1.65)return roster[1+Math.floor(Math.random()*3)];if(r<9.65)return roster[4+Math.floor(Math.random()*3)];if(r<34.65)return roster[7+Math.floor(Math.random()*2)];return roster[9]}
+function addPull(c){collection[c.name]=(collection[c.name]||0)+1;if(equipped.length<3&&!equipped.includes(c.name))equipped.push(c.name)}
+function showPulls(list,title){let b=$("result");b.className="result show";b.innerHTML=`<h3>${title}</h3><div class="grid">${list.map(c=>`<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong></div>`).join("")}</div>`}
+function summon(n){if(gems<n*160){alert("No tienes suficientes gemas.");return}gems-=n*160;pulls+=n;let out=[];for(let i=0;i<n;i++){let c=chooseNormal();pity=(c.rarity==="SSR"||c.rarity==="UR")?0:pity+1;addPull(c);out.push(c)}save();update();showPulls(out,"Invocaciones normales")}
+function specialSummon(n){if(gems<n*400){alert("No tienes suficientes gemas.");return}gems-=n*400;let pool=animeRoster.filter(c=>!c.locked||fingers>=20),out=[];for(let i=0;i<n;i++){let r=Math.random()*100,c;if(pool.some(x=>x.name==="Sukuna")&&r<.15)c=animeRoster[2];else if(r<50)c=animeRoster[0];else c=animeRoster[1];addPull(c);out.push(c)}save();update();showPulls(out,"Banner especial")}
+function equipBest(){let list=owned().sort((a,b)=>b.power-a.power);equipped=list.slice(0,3).map(c=>c.name);save();update();alert("Equipo actualizado con tus 3 personajes más fuertes.")}
+function renderCollection(){let keys=Object.keys(collection).filter(k=>collection[k]>0);$("count").textContent=`${keys.length} personajes · ${Object.values(collection).reduce((a,b)=>a+b,0)} copias.`;$("teamSlots").innerHTML=[0,1,2].map(i=>`<div class="team-slot">${i+1}. ${team()[i]?team()[i].emoji+" "+team()[i].name:"Vacío"}</div>`).join("");$("cards").innerHTML=keys.map(n=>{let c=roster.find(x=>x.name===n);if(!c)return"";let on=equipped.includes(n);return `<div class="card"><div class="portrait">${c.emoji}</div><span class="rarity ${c.rarity}">${c.rarity}</span><strong>${c.name}</strong><p class="muted">${c.title}</p><p class="muted">Copias: ${collection[n]}</p><button class="small ${on?"ghost":"pull"}" onclick="toggleEquip('${n}')">${on?"Quitar":"Equipar"}</button>${collection[n]>1?`<button class="small danger" style="width:100%;margin-top:6px" onclick="sacrifice('${n}')">Sacrificar copia</button>`:""}</div>`}).join("")}
+function toggleEquip(n){if(equipped.includes(n))equipped=equipped.filter(x=>x!==n);else if(equipped.length<3)equipped.push(n);else return alert("Máximo 3 personajes. Quita uno primero.");save();update()}
+function sacrifice(n){if((collection[n]||0)<=1)return alert("Debes conservar al menos una copia.");if(!confirm(`¿Sacrificar una copia de ${n}? Se hará una ruleta y podrías no ganar ticket.`))return;collection[n]--;let odds={N:.65,R:.45,SR:.25,SSR:.12,UR:.05,MYTHIC:.01}[roster.find(c=>c.name===n).rarity]||.2;let won=Math.random()<odds;if(won)tickets++;save();update();alert(won?`🎟️ ¡La ruleta te dio 1 ticket! (${Math.round(odds*100)}% de probabilidad)`:`La ruleta no dio ticket esta vez. Probabilidad: ${Math.round(odds*100)}%.`)}
+function daily(){let day=new Date().toLocaleDateString();if(localStorage.getItem("astra_daily")===day)return $("dailyMsg").textContent="Ya reclamaste hoy.";gems+=100;localStorage.setItem("astra_daily",day);save();update();$("dailyMsg").textContent="¡100 gemas recibidas!"}
+const tasks=[{id:"w1",name:"Primera victoria",desc:"Gana un combate",reward:100,done:()=>wins>=1},{id:"w5",name:"Combatiente",desc:"Gana 5 combates",reward:250,done:()=>wins>=5},{id:"p5",name:"Invocador",desc:"Haz 5 invocaciones normales",reward:100,done:()=>pulls>=5}];
+function renderMissions(){$("missionsGrid").innerHTML=tasks.map(t=>`<div class="card"><strong>${t.name}</strong><p class="muted">${t.desc}</p><b>💎 ${t.reward}</b><p><button class="small ghost" ${!t.done()||claimed[t.id]?"disabled":""} onclick="claimTask('${t.id}')">${claimed[t.id]?"Reclamada":t.done()?"Reclamar":"En progreso"}</button></p></div>`).join("")}
 function claimTask(id){let t=tasks.find(x=>x.id===id);if(!t||!t.done()||claimed[id])return;claimed[id]=true;gems+=t.reward;save();update()}
-function prepareEnemy(){
-let index=(wins)%enemyTypes.length,base=70+Math.floor(wins/5)*35;
-return {...enemyTypes[index],maxHp:base,hp:base,attack:8+Math.floor(wins/3)*3};
-}
-function startBattle(){
-if(!team().length){alert("Primero equipa al menos un personaje en Colección.");return}
-enemy=prepareEnemy();battleActive=true;defending=false;playerTurn=0;
-document.getElementById("startBattleBtn").disabled=true;setBattleButtons(true);
-document.getElementById("battleLog").textContent="¡Comienza el combate! Elige tu acción.";
-renderEnemy();
-}
-function renderEnemy(){
-if(!enemy)return;
-document.getElementById("stageTitle").textContent="Combate "+(wins+1);
-document.getElementById("enemyEmoji").textContent=enemy.emoji;document.getElementById("enemyName").textContent=enemy.name;
-document.getElementById("enemyHpText").textContent=`${enemy.hp} / ${enemy.maxHp} HP`;
-document.getElementById("enemyHpBar").style.width=Math.max(0,enemy.hp/enemy.maxHp*100)+"%";
-}
-function setBattleButtons(on){["attackBtn","defendBtn","skillBtn"].forEach(id=>document.getElementById(id).disabled=!on)}
-function battleAction(action){
-if(!battleActive||!enemy)return;
-let squad=team(),power=squad.reduce((s,c)=>s+c.power,0),damage=0,msg="";
-if(action==="attack"){damage=Math.max(8,Math.round(power*(.65+Math.random()*.25)));msg=`Tu equipo ataca y causa ${damage} de daño.`}
-if(action==="skill"){damage=Math.max(12,Math.round(power*(1.05+Math.random()*.25)));msg=`¡Habilidad especial! Causas ${damage} de daño.`}
-if(action==="defend"){defending=true;msg="Tu equipo se prepara y reduce el próximo ataque enemigo."}
-if(damage>0)enemy.hp=Math.max(0,enemy.hp-damage);
-if(enemy.hp<=0){renderEnemy();winBattle(msg+"\n¡Enemigo derrotado!");return}
-let incoming=enemy.attack+Math.floor(Math.random()*6);
-if(defending){incoming=Math.ceil(incoming*.35);defending=false}
-let playerHp=Number(sessionStorage.getItem("astra_battle_hp"));
-if(!playerHp)playerHp=100+power*2;
-playerHp-=incoming;sessionStorage.setItem("astra_battle_hp",playerHp);
-msg+=`\n${enemy.name} contraataca: ${incoming} de daño.`;
-if(playerHp<=0){battleActive=false;setBattleButtons(false);document.getElementById("startBattleBtn").disabled=false;sessionStorage.removeItem("astra_battle_hp");document.getElementById("battleLog").textContent=msg+"\nTu equipo fue derrotado. Puedes intentarlo otra vez.";return}
-document.getElementById("battleLog").textContent=msg+`\nResistencia del equipo: ${playerHp}.`;
-renderEnemy();
-}
-function winBattle(msg){
-battleActive=false;wins++;tickets++;sessionStorage.removeItem("astra_battle_hp");
-setBattleButtons(false);document.getElementById("startBattleBtn").disabled=false;
-document.getElementById("battleLog").textContent=msg+"\n🏆 ¡Victoria! Recibiste 1 ticket.";
-save();update();
-}
-function spinCasino(){
-if(tickets<1){alert("No tienes tickets. Gana combates o sacrifica copias extra.");return}
-tickets--;let r=Math.random(),prize=r<.45?0:r<.78?50:r<.94?120:r<.99?300:700;gems+=prize;
-let box=document.getElementById("casinoResult");box.className="result show";
-box.innerHTML=`<div class="big">${prize>=300?"🌟":prize?"💎":"🎲"}</div><h2>${prize?`¡Ganaste ${prize} gemas!`:"No salió premio esta vez"}</h2><p class="muted">Tickets restantes: ${tickets}</p>`;
-save();update();
-}
-document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
-document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");
-["summon","collection","battle","missions","casino"].forEach(id=>document.getElementById(id).classList.toggle("hidden",b.dataset.tab!==id));
-}));
-setInterval(()=>{let r=rate();if(r>0){gems+=r;save();document.getElementById("gems").textContent=Math.floor(gems)}},1000);
-update();setBattleButtons(false);
-</script>
-</body>
-</html>
+function enemyUnit(name,emoji,hp,atk,kind="normal"){return{name,emoji,maxHp:hp,hp,atk,kind,poison:0}}
+function newSquad(){return team().map(c=>({name:c.name,emoji:c.emoji,maxHp:90+c.power*2,hp:90+c.power*2,atk:c.power,skills:c.skills,rarity:c.rarity}))}
+function normalEnemies(){let s=wins;return [enemyUnit(["Slime","Lobo umbrío","Gólem antiguo","Dragón menor"][s%4],["🟣","🐺","🗿","🐲"][s%4],95+s*12,9+Math.floor(s/2)*2)]}
+function startNormalBattle(){if(!team().length)return alert("Equipa al menos un personaje.");battle={allies:newSquad(),foes:normalEnemies(),wave:1,normal:true};eventMode=false;selectedAlly=null;selectedSkill=null;renderBattle();$("battleLog").textContent="¡Empieza! Elige un aliado."}
+function startSukunaEvent(){if(!team().length)return alert("Equipa al menos un personaje.");if(battle&&battle.event)return alert("Ya estás dentro del evento.");battle={allies:newSquad(),foes:makeEventWave(1),wave:1,event:true};eventMode=true;selectedAlly=null;selectedSkill=null;$("eventBattle").classList.remove("hidden");renderEvent();$("eventLog").textContent="La energía maldita es abrumadora. Sobrevive a las tres oleadas."}
+function makeEventWave(w){if(w===1)return[enemyUnit("Maldición menor","👺",180,18),enemyUnit("Maldición menor","👹",180,18)];if(w===2)return[enemyUnit("Maldición de grado 1","👹",290,27),enemyUnit("Espíritu veloz","👻",210,22),enemyUnit("Espíritu venenoso","☠️",190,20)];return[enemyUnit("Guardia del santuario","🗿",520,36),enemyUnit("Maldición superior","👹",430,32),enemyUnit("Sombra maldita","🌑",390,30)]}
+function activeBattle(){return battle}
+function renderBattle(){if(!battle)return;let allyId=eventMode?"eventAllies":"allySide",foeId=eventMode?"eventFoes":"foeSide",skillId=eventMode?"eventSkills":"skillArea";$(allyId).innerHTML=battle.allies.map((a,i)=>unitHTML(a,i,true)).join("");$(foeId).innerHTML=battle.foes.map((f,i)=>unitHTML(f,i,false)).join("");$(skillId).innerHTML=selectedAlly===null?`<p class="muted">Selecciona un personaje vivo.</p>`:skillHTML(battle.allies[selectedAlly]);if(eventMode)$("eventWave").textContent=`Oleada ${battle.wave}/3`;else $("stageTitle").textContent="Combate normal · Victoria "+(wins+1)}
+function unitHTML(u,i,ally){let selected=ally&&selectedAlly===i,dead=u.hp<=0;return `<div class="fighter ${selected?"selected":""} ${dead?"dead":""}" onclick="${dead?"":ally?`selectAlly(${i})`:`selectTarget(${i})`}"><div class="face">${u.emoji}</div><b>${u.name}</b><div class="hpbar"><div class="hpfill" style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></div></div><small>${Math.max(0,u.hp)}/${u.maxHp} HP</small></div>`}
+function selectAlly(i){if(!battle||battle.allies[i].hp<=0)return;selectedAlly=i;selectedSkill=null;renderBattle()}
+function selectTarget(i){if(!battle||selectedAlly===null||!selectedSkill)return;let target=battle.foes[i];if(!target||target.hp<=0)return;executeSkill(i)}
+function skillHTML(a){return `<b>${a.emoji} ${a.name}: elige habilidad</b><div class="skillrow">${a.skills.map((s,i)=>`<button class="ghost small" onclick="chooseSkill(${i})">${s[0]}</button>`).join("")}</div><p class="muted">${selectedSkill===null?"Elige una habilidad.": "Ahora toca un enemigo para atacar."}</p>`}
+function chooseSkill(i){if(!battle||selectedAlly===null)return;selectedSkill=i;let s=battle.allies[selectedAlly].skills[i];if(s[2]==="all"||s[2]==="poisonAll"||s[2]==="heal")executeSkill(0);else renderBattle()}
+function executeSkill(targetIndex){let a=battle.allies[selectedAlly],skill=a.skills[selectedSkill];if(!skill)return;let type=skill[2],log="";if(type==="heal"){let heal=45; battle.allies.filter(x=>x.hp>0).forEach(x=>x.hp=Math.min(x.maxHp,x.hp+heal));log=`${a.name} usa ${skill[0]} y cura a los aliados.`}else{let targets=type==="all"||type==="poisonAll"?battle.foes.filter(x=>x.hp>0):[battle.foes[targetIndex]];targets.forEach(t=>{let dmg=Math.max(1,Math.round(a.atk*skill[1]));t.hp=Math.max(0,t.hp-dmg);if(type==="poisonAll")t.poison=3;log+=`${a.name} usa ${skill[0]} contra ${t.name}: ${dmg} de daño${type==="poisonAll"?" y veneno":""}.\n`})}selectedAlly=null;selectedSkill=null;afterPlayerTurn(log)}
+function afterPlayerTurn(log){let living=battle.foes.filter(f=>f.hp>0);if(!living.length){if(battle.event){if(battle.wave<3){battle.wave++;battle.foes=makeEventWave(battle.wave);log+="\n¡Oleada superada! La siguiente será más fuerte."}else{let chance=.28,won=Math.random()<chance;if(won)fingers++;$("eventLog").textContent=log+`\n🏆 ¡Jefe derrotado! ${won?"Conseguiste un dedo de Sukuna.":"No cayó ningún dedo esta vez."} (${Math.round(chance*100)}% de probabilidad).`;battle=null;save();update();$("eventBattle").classList.add("hidden");return}}else{wins++;tickets++;$("battleLog").textContent=log+"\n🏆 ¡Victoria! +1 ticket.";battle=null;save();update();return}}else{let incoming=0;battle.foes.filter(f=>f.hp>0).forEach(f=>{let d=f.atk;if(battle.event)d=Math.round(d*(.8+Math.random()*.5));let target=battle.allies.filter(a=>a.hp>0).sort((x,y)=>x.hp/y.maxHp-y.hp/x.maxHp)[0];if(target){target.hp=Math.max(0,target.hp-d);incoming+=d;log+=`${f.name} ataca a ${target.name} (${d}).\n`}});battle.allies.filter(a=>a.hp>0&&a.poison>0).forEach(a=>{a.hp=Math.max(0,a.hp-8);a.poison--});if(!battle.allies.some(a=>a.hp>0)){log+="\nTu equipo cayó. El evento terminó; conservas los dedos obtenidos.";battle=null;if(eventMode)$("eventBattle").classList.add("hidden");save();update();if(eventMode)$("eventLog").textContent=log;else $("battleLog").textContent=log;return}}renderBattle();if(eventMode)$("eventLog").textContent=log;else $("battleLog").textContent=log}
+function spinCasino(){if(tickets<1)return alert("No tienes tickets.");tickets--;let r=Math.random(),prize=r<.5?0:r<.8?40:r<.95?100:r<.99?250:500;gems+=prize;$("casinoResult").className="result show";$("casinoResult").innerHTML=`<h2>${prize?"Ganaste "+prize+" gemas":"No salió premio"}</h2>`;save();update()}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");["summon","collection","battle","event","missions","casino"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.tab))}));
+setInterval(()=>{let r=income();if(r>0){gems+=r;localStorage.setItem("astra_gems",gems);$("gems").textContent=Math.floor(gems)}},1000);
+update();
+</script></body></html>
